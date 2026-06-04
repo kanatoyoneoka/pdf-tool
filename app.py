@@ -33,7 +33,8 @@ def show_preview(pdf_bytes, rotations=None, columns=4):
                 if angle:
                     img = img.rotate(-angle, expand=True)
                 with cols[col_idx]:
-                    st.image(img, caption=f"p.{page_idx + 1}", use_column_width=True)return images
+                    st.image(img, caption=f"p.{page_idx + 1}", use_column_width=True)
+        return images
     except Exception as e:
         st.error(f"プレビューの表示に失敗しました：{e}")
         return []
@@ -49,24 +50,21 @@ with tab1:
         total = len(reader.pages)
         st.info(f"総ページ数：{total} ページ（ページ番号は1から始まります）")
 
-        # --- プレビュー（一番上に移動）---
         with st.expander("🔍 プレビューを表示する", expanded=True):
             show_preview(pdf_bytes, rotations=st.session_state.get("rotations", {}))
 
         st.divider()
 
-        # ---① 並び順---
         st.subheader("① ページの並び順")
         default_order = ",".join(str(i) for i in range(1, total + 1))
         order_input = st.text_input(
             "ページ番号をカンマ区切りで入力してください",
             value=default_order,
-            help="例）2,1,3 → 1ページ目と2ページ目を入れ替え"
+            help="例）2,1,3→ 1ページ目と2ページ目を入れ替え"
         )
 
         st.divider()
 
-        # --- ② 回転 ---
         st.subheader("② 回転させるページ")
 
         if "rotations" not in st.session_state:
@@ -122,7 +120,6 @@ with tab1:
 
         st.divider()
 
-        # --- 実行ボタン ---
         if st.button("✅ 実行してダウンロード", key="btn_reorder"):
             try:
                 page_order = [int(p.strip()) - 1 for p in order_input.split(",")]
