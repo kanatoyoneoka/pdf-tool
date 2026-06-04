@@ -11,12 +11,9 @@ st.set_page_config(page_title="PDFツール🌸", page_icon="🌸", layout="wide
 
 st.markdown("""
 <style>
-/*全体背景 */
 .stApp {
     background-color: #fff8fb;
 }
-
-/* タイトル */
 h1 {
     color: #d96ea0;
     font-size: 2rem;
@@ -24,14 +21,10 @@ h1 {
     text-align: center;
     padding: 1rem 0 0.2rem 0;
 }
-
-/* サブタイトル */
 .stCaption {
     text-align: center;
     color: #b07aad;
 }
-
-/* タブ */
 .stTabs [data-baseweb="tab-list"] {
     background-color: #fde8f3;
     border-radius: 16px;
@@ -45,11 +38,9 @@ h1 {
     padding: 6px 20px;
 }
 .stTabs [aria-selected="true"] {
-    background-color: #f9b8d8!important;
+    background-color: #f9b8d8 !important;
     color: #8b3a7e !important;
 }
-
-/* ヘッダー */
 h2 {
     color: #c762a0;
     border-left: 5px solid #f9b8d8;
@@ -58,16 +49,12 @@ h2 {
 h3 {
     color: #b07aad;
 }
-
-/* infoボックス */
 .stAlert {
     background-color: #fde8f3 !important;
     border: 1px solid #f9b8d8 !important;
     border-radius: 12px !important;
     color: #a0527a !important;
 }
-
-/* ボタン */
 .stButton > button {
     background-color: #f9b8d8;
     color: #7a2e5e;
@@ -81,8 +68,6 @@ h3 {
     background-color: #f490c0;
     color: white;
 }
-
-/* ダウンロードボタン */
 .stDownloadButton > button {
     background-color: #c8f0d8;
     color: #2e7a52;
@@ -95,30 +80,22 @@ h3 {
     background-color: #a0e0bc;
     color: white;
 }
-
-/* テキスト入力 */
 .stTextInput > div > div > input {
     border: 2px solid #f9b8d8;
     border-radius: 12px;
     background-color: #fff8fb;
     color: #7a2e5e;
 }
-
-/* セレクトボックス */
 .stSelectbox > div > div {
     border: 2px solid #f9b8d8;
     border-radius: 12px;
     background-color: #fff8fb;
 }
-
-/* マルチセレクト */
 .stMultiSelect > div > div {
     border: 2px solid #f9b8d8;
     border-radius: 12px;
     background-color: #fff8fb;
 }
-
-/* エクスパンダー */
 .streamlit-expanderHeader {
     background-color: #fde8f3 !important;
     border-radius: 12px !important;
@@ -129,25 +106,17 @@ h3 {
     border: 1px solid #f9b8d8 !important;
     border-radius: 0 0 12px 12px !important;
 }
-
-/* divider */
 hr {
     border-color: #f9b8d8;
 }
-
-/* サクセスメッセージ */
 .stSuccess {
     background-color: #e8f8ee !important;
     border: 1px solid #a0e0bc !important;
     border-radius: 12px !important;
 }
-
-/* エラーメッセージ */
 .stError {
     border-radius: 12px !important;
 }
-
-/* ラジオボタン */
 .stRadio > div {
     gap: 16px;
 }
@@ -179,7 +148,8 @@ def show_preview(pdf_bytes, rotations=None, columns=4):
                 if angle:
                     img = img.rotate(-angle, expand=True)
                 with cols[col_idx]:
-                    st.image(img, caption=f"p.{page_idx + 1}", use_column_width=True)return images
+                    st.image(img, caption=f"p.{page_idx + 1}", use_column_width=True)
+        return images
     except Exception as e:
         st.error(f"プレビューの表示に失敗しました：{e}")
         return []
