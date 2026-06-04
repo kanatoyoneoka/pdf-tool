@@ -39,6 +39,7 @@ def show_preview(pdf_bytes, rotations=None, columns=4):
                     st.image(img, caption=f"p.{page_idx + 1}", use_column_width=True)return images
     except Exception as e:
         st.error(f"プレビューの表示に失敗しました：{e}")
+        
         return []
 
 
