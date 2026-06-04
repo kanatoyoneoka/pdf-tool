@@ -4,12 +4,42 @@ from pdf2image import convert_from_bytes
 import io
 import zipfile
 import os
+from PIL import Image
+import math
 
-st.set_page_config(page_title="PDFツール", page_icon="📄", layout="centered")
+st.set_page_config(page_title="PDFツール", page_icon="📄", layout="wide")
 st.title("📄 PDFツール")
 st.caption("ページ並び替え・結合・画像変換ができます")
 
 tab1, tab2, tab3 = st.tabs(["🔀 並び替え・回転", "📎 PDF結合", "🖼️ 画像変換"])
+
+
+# ==========================
+# 共通：プレビュー表示関数
+# ==========================
+def show_preview(pdf_bytes, rotations=None, columns=4):
+    if rotations is None:
+        rotations = {}
+    try:
+        images = convert_from_bytes(pdf_bytes, dpi=72)
+        total = len(images)
+        st.subheader(f"📋 プレビュー（全{total}ページ）")
+        rows = math.ceil(total / columns)
+        for row in range(rows):
+            cols = st.columns(columns)
+            for col_idx in range(columns):
+                page_idx = row * columns + col_idx
+                if page_idx >= total:
+                    break
+                img = images[page_idx]
+                angle = rotations.get(page_idx, 0)
+                if angle:
+                    img = img.rotate(-angle, expand=True)
+                with cols[col_idx]:
+                    st.image(img, caption=f"p.{page_idx + 1}", use_column_width=True)return images
+    except Exception as e:
+        st.error(f"プレビューの表示に失敗しました：{e}")
+        return []
 
 
 # ==========================
@@ -20,11 +50,13 @@ with tab1:
     uploaded = st.file_uploader("PDFをアップロード", type="pdf", key="reorder")
 
     if uploaded:
-        reader = PyPDF2.PdfReader(uploaded)
+        pdf_bytes = uploaded.read()
+        reader = PyPDF2.PdfReader(io.BytesIO(pdf_bytes))
         total = len(reader.pages)
         st.info(f"総ページ数：{total} ページ（ページ番号は1から始まります）")
 
-        st.subheader("①ページの並び順")
+        # ---① 並び順---
+        st.subheader("① ページの並び順")
         default_order = ",".join(str(i) for i in range(1, total + 1))
         order_input = st.text_input(
             "ページ番号をカンマ区切りで入力してください",
@@ -32,29 +64,77 @@ with tab1:
             help="例）2,1,3 → 1ページ目と2ページ目を入れ替え"
         )
 
-        st.subheader("② 回転させるページ（不要なら空欄でOK）")
-        rotate_input = st.text_input(
-            "ページ番号:角度 をカンマ区切りで入力",
-            placeholder="例）3:90,5:180",
-            help="角度は90/ 180 / 270 から選択"
+        # --- ② 回転（ボタン式） ---
+        st.subheader("② 回転させるページ")
+
+        if "rotations" not in st.session_state:
+            st.session_state.rotations = {}
+
+        rotate_pages = st.multiselect(
+            "回転させるページを選んでください（複数選択可）",
+            options=list(range(1, total + 1)),
+            format_func=lambda x: f"p.{x}"
         )
 
+        if rotate_pages:
+            st.write("各ページの回転方向を選んでください：")
+            cols_header = st.columns([1, 2, 2, 2, 1])
+            cols_header[0].markdown("**ページ**")
+            cols_header[1].markdown("**↺ 左に90°**")
+            cols_header[2].markdown("**↕ 逆さに**")
+            cols_header[3].markdown("**↻ 右に90°**")
+            cols_header[4].markdown("**🔄 リセット**")
+
+            for pg in rotate_pages:
+                idx = pg - 1
+                current = st.session_state.rotations.get(idx, None)
+                cols = st.columns([1, 2, 2, 2, 1])
+                cols[0].markdown(f"**p.{pg}**")
+
+                if cols[1].button("↺ 左90°", key=f"left_{pg}",
+                                  type="primary" if current == 270 else "secondary"):
+                    st.session_state.rotations[idx] = 270
+                    st.rerun()
+
+                if cols[2].button("↕ 逆さ", key=f"flip_{pg}",
+                                  type="primary" if current == 180 else "secondary"):
+                    st.session_state.rotations[idx] = 180
+                    st.rerun()
+
+                if cols[3].button("↻ 右90°", key=f"right_{pg}",
+                                  type="primary" if current == 90 else "secondary"):
+                    st.session_state.rotations[idx] = 90
+                    st.rerun()
+
+                if cols[4].button("🔄", key=f"reset_{pg}"):
+                    st.session_state.rotations.pop(idx, None)
+                    st.rerun()
+
+            if st.session_state.rotations:
+                label_map = {90: "右90°", 180: "逆さ", 270: "左90°"}
+                settings = [
+                    f"p.{i+1}→{label_map[v]}"
+                    for i, v in st.session_state.rotations.items()
+                ]
+                st.caption(f"現在の回転設定：{' / '.join(settings)}")
+
+        # --- プレビュー ---
+        st.divider()
+        with st.expander("🔍 プレビューを表示する", expanded=True):
+            show_preview(pdf_bytes, rotations=st.session_state.rotations)
+
+        # --- 実行ボタン ---
+        st.divider()
         if st.button("✅ 実行してダウンロード", key="btn_reorder"):
             try:
                 page_order = [int(p.strip()) - 1 for p in order_input.split(",")]
+                rotations = st.session_state.rotations
 
-                rotations = {}
-                if rotate_input.strip():
-                    for item in rotate_input.split(","):
-                        pg, angle = item.split(":")
-                        rotations[int(pg.strip()) - 1] = int(angle.strip())
-
-                uploaded.seek(0)
-                reader = PyPDF2.PdfReader(uploaded)
                 writer = PyPDF2.PdfWriter()
+                reader2 = PyPDF2.PdfReader(io.BytesIO(pdf_bytes))
 
                 for original_idx in page_order:
-                    page = reader.pages[original_idx]
+                    page = reader2.pages[original_idx]
                     if original_idx in rotations:
                         page.rotate(rotations[original_idx])
                     writer.add_page(page)
@@ -96,6 +176,13 @@ with tab2:
             placeholder="例）2,1,3"
         )
 
+        with st.expander("🔍 各PDFのプレビューを表示する"):
+            for i, f in enumerate(uploaded_files, 1):
+                st.markdown(f"**{i}. {f.name}**")
+                f.seek(0)
+                show_preview(f.read(), columns=4)
+                st.divider()
+
         if st.button("✅ 結合してダウンロード", key="btn_merge"):
             try:
                 if order_input.strip():
@@ -134,7 +221,8 @@ with tab3:
     uploaded = st.file_uploader("PDFをアップロード", type="pdf", key="convert")
 
     if uploaded:
-        reader = PyPDF2.PdfReader(uploaded)
+        pdf_bytes = uploaded.read()
+        reader = PyPDF2.PdfReader(io.BytesIO(pdf_bytes))
         total = len(reader.pages)
         st.info(f"総ページ数：{total} ページ")
 
@@ -159,6 +247,9 @@ with tab3:
 
         fmt = st.radio("画像形式", ["PNG", "JPEG"], horizontal=True)
 
+        with st.expander("🔍 プレビューを表示する", expanded=True):
+            show_preview(pdf_bytes, columns=4)
+
         if st.button("✅ 変換してダウンロード", key="btn_convert"):
             try:
                 if page_input.strip().lower() == "all":
@@ -168,9 +259,6 @@ with tab3:
                     page_numbers = list(range(int(start), int(end) + 1))
                 else:
                     page_numbers = [int(p.strip()) for p in page_input.split(",")]
-
-                uploaded.seek(0)
-                pdf_bytes = uploaded.read()
 
                 with st.spinner("変換中...しばらくお待ちください"):
                     images = convert_from_bytes(
