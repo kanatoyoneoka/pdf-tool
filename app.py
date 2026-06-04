@@ -7,8 +7,154 @@ import os
 from PIL import Image
 import math
 
-st.set_page_config(page_title="PDFツール", page_icon="📄", layout="wide")
-st.title("📄 PDFツール")
+st.set_page_config(page_title="PDFツール🌸", page_icon="🌸", layout="wide")
+
+st.markdown("""
+<style>
+/*全体背景 */
+.stApp {
+    background-color: #fff8fb;
+}
+
+/* タイトル */
+h1 {
+    color: #d96ea0;
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 1rem 0 0.2rem 0;
+}
+
+/* サブタイトル */
+.stCaption {
+    text-align: center;
+    color: #b07aad;
+}
+
+/* タブ */
+.stTabs [data-baseweb="tab-list"] {
+    background-color: #fde8f3;
+    border-radius: 16px;
+    padding: 4px;
+    gap: 4px;
+}
+.stTabs [data-baseweb="tab"] {
+    border-radius: 12px;
+    color: #c778a8;
+    font-weight: bold;
+    padding: 6px 20px;
+}
+.stTabs [aria-selected="true"] {
+    background-color: #f9b8d8!important;
+    color: #8b3a7e !important;
+}
+
+/* ヘッダー */
+h2 {
+    color: #c762a0;
+    border-left: 5px solid #f9b8d8;
+    padding-left: 10px;
+}
+h3 {
+    color: #b07aad;
+}
+
+/* infoボックス */
+.stAlert {
+    background-color: #fde8f3 !important;
+    border: 1px solid #f9b8d8 !important;
+    border-radius: 12px !important;
+    color: #a0527a !important;
+}
+
+/* ボタン */
+.stButton > button {
+    background-color: #f9b8d8;
+    color: #7a2e5e;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    padding: 8px 24px;
+    transition: background-color 0.2s;
+}
+.stButton > button:hover {
+    background-color: #f490c0;
+    color: white;
+}
+
+/* ダウンロードボタン */
+.stDownloadButton > button {
+    background-color: #c8f0d8;
+    color: #2e7a52;
+    border: none;
+    border-radius: 20px;
+    font-weight: bold;
+    padding: 8px 24px;
+}
+.stDownloadButton > button:hover {
+    background-color: #a0e0bc;
+    color: white;
+}
+
+/* テキスト入力 */
+.stTextInput > div > div > input {
+    border: 2px solid #f9b8d8;
+    border-radius: 12px;
+    background-color: #fff8fb;
+    color: #7a2e5e;
+}
+
+/* セレクトボックス */
+.stSelectbox > div > div {
+    border: 2px solid #f9b8d8;
+    border-radius: 12px;
+    background-color: #fff8fb;
+}
+
+/* マルチセレクト */
+.stMultiSelect > div > div {
+    border: 2px solid #f9b8d8;
+    border-radius: 12px;
+    background-color: #fff8fb;
+}
+
+/* エクスパンダー */
+.streamlit-expanderHeader {
+    background-color: #fde8f3 !important;
+    border-radius: 12px !important;
+    color: #c762a0 !important;font-weight: bold;
+}
+.streamlit-expanderContent {
+    background-color: #fff8fb !important;
+    border: 1px solid #f9b8d8 !important;
+    border-radius: 0 0 12px 12px !important;
+}
+
+/* divider */
+hr {
+    border-color: #f9b8d8;
+}
+
+/* サクセスメッセージ */
+.stSuccess {
+    background-color: #e8f8ee !important;
+    border: 1px solid #a0e0bc !important;
+    border-radius: 12px !important;
+}
+
+/* エラーメッセージ */
+.stError {
+    border-radius: 12px !important;
+}
+
+/* ラジオボタン */
+.stRadio > div {
+    gap: 16px;
+}
+</style>
+""", unsafe_allow_html=True)
+
+st.title("🌸 PDF ツール 🌸")
 st.caption("ページ並び替え・結合・画像変換ができます")
 
 tab1, tab2, tab3 = st.tabs(["🔀 並び替え・回転", "📎 PDF結合", "🖼️ 画像変換"])
@@ -33,8 +179,7 @@ def show_preview(pdf_bytes, rotations=None, columns=4):
                 if angle:
                     img = img.rotate(-angle, expand=True)
                 with cols[col_idx]:
-                    st.image(img, caption=f"p.{page_idx + 1}", use_column_width=True)
-        return images
+                    st.image(img, caption=f"p.{page_idx + 1}", use_column_width=True)return images
     except Exception as e:
         st.error(f"プレビューの表示に失敗しました：{e}")
         return []
@@ -48,19 +193,19 @@ with tab1:
         pdf_bytes = uploaded.read()
         reader = PyPDF2.PdfReader(io.BytesIO(pdf_bytes))
         total = len(reader.pages)
-        st.info(f"総ページ数：{total} ページ（ページ番号は1から始まります）")
+        st.info(f"📄 総ページ数：{total} ページ（ページ番号は1から始まります）")
 
         with st.expander("🔍 プレビューを表示する", expanded=True):
             show_preview(pdf_bytes, rotations=st.session_state.get("rotations", {}))
 
         st.divider()
 
-        st.subheader("① ページの並び順")
+        st.subheader("①ページの並び順")
         default_order = ",".join(str(i) for i in range(1, total + 1))
         order_input = st.text_input(
             "ページ番号をカンマ区切りで入力してください",
             value=default_order,
-            help="例）2,1,3→ 1ページ目と2ページ目を入れ替え"
+            help="例）2,1,3 → 1ページ目と2ページ目を入れ替え"
         )
 
         st.divider()
@@ -138,7 +283,7 @@ with tab1:
                 writer.write(output)
                 output.seek(0)
 
-                st.success("✅ 完了しました！")
+                st.success("🌸 完了しました！")
                 st.download_button(
                     label="📥 PDFをダウンロード",
                     data=output,
@@ -194,7 +339,7 @@ with tab2:
                 writer.write(output)
                 output.seek(0)
 
-                st.success("✅ 完了しました！")
+                st.success("🌸 完了しました！")
                 st.download_button(
                     label="📥 PDFをダウンロード",
                     data=output,
@@ -213,7 +358,7 @@ with tab3:
         pdf_bytes = uploaded.read()
         reader = PyPDF2.PdfReader(io.BytesIO(pdf_bytes))
         total = len(reader.pages)
-        st.info(f"総ページ数：{total} ページ")
+        st.info(f"📄 総ページ数：{total} ページ")
 
         col1, col2 = st.columns(2)
         with col1:
@@ -249,7 +394,7 @@ with tab3:
                 else:
                     page_numbers = [int(p.strip()) for p in page_input.split(",")]
 
-                with st.spinner("変換中...しばらくお待ちください"):
+                with st.spinner("変換中...しばらくお待ちください🌸"):
                     images = convert_from_bytes(
                         pdf_bytes,
                         dpi=dpi,
@@ -275,7 +420,7 @@ with tab3:
                             )
 
                 zip_buffer.seek(0)
-                st.success(f"✅ {len(images)}枚の画像に変換しました！")
+                st.success(f"🌸 {len(images)}枚の画像に変換しました！")
                 st.download_button(
                     label="📥 ZIPでダウンロード",
                     data=zip_buffer,
