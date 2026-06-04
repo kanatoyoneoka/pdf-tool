@@ -14,9 +14,6 @@ st.caption("ページ並び替え・結合・画像変換ができます")
 tab1, tab2, tab3 = st.tabs(["🔀 並び替え・回転", "📎 PDF結合", "🖼️ 画像変換"])
 
 
-# ==========================
-# 共通：プレビュー表示関数
-# ==========================
 def show_preview(pdf_bytes, rotations=None, columns=4):
     if rotations is None:
         rotations = {}
@@ -36,16 +33,13 @@ def show_preview(pdf_bytes, rotations=None, columns=4):
                 if angle:
                     img = img.rotate(-angle, expand=True)
                 with cols[col_idx]:
-                    st.image(img, caption=f"p.{page_idx + 1}", use_column_width=True)return images
+                    st.image(img, caption=f"p.{page_idx + 1}", use_column_width=True)
+        return images
     except Exception as e:
         st.error(f"プレビューの表示に失敗しました：{e}")
-        
         return []
 
 
-# ==========================
-# 機能1：並び替え・回転
-# ==========================
 with tab1:
     st.header("ページの並び替え・回転")
     uploaded = st.file_uploader("PDFをアップロード", type="pdf", key="reorder")
@@ -56,8 +50,7 @@ with tab1:
         total = len(reader.pages)
         st.info(f"総ページ数：{total} ページ（ページ番号は1から始まります）")
 
-        # ---① 並び順---
-        st.subheader("① ページの並び順")
+        st.subheader("①ページの並び順")
         default_order = ",".join(str(i) for i in range(1, total + 1))
         order_input = st.text_input(
             "ページ番号をカンマ区切りで入力してください",
@@ -65,7 +58,6 @@ with tab1:
             help="例）2,1,3 → 1ページ目と2ページ目を入れ替え"
         )
 
-        # --- ② 回転（ボタン式） ---
         st.subheader("② 回転させるページ")
 
         if "rotations" not in st.session_state:
@@ -82,7 +74,7 @@ with tab1:
             cols_header = st.columns([1, 2, 2, 2, 1])
             cols_header[0].markdown("**ページ**")
             cols_header[1].markdown("**↺ 左に90°**")
-            cols_header[2].markdown("**↕ 逆さに**")
+            cols_header[2].markdown("**↕逆さに**")
             cols_header[3].markdown("**↻ 右に90°**")
             cols_header[4].markdown("**🔄 リセット**")
 
@@ -93,7 +85,7 @@ with tab1:
                 cols[0].markdown(f"**p.{pg}**")
 
                 if cols[1].button("↺ 左90°", key=f"left_{pg}",
-                                  type="primary" if current == 270 else "secondary"):
+                                  type="primary" if current ==270 else "secondary"):
                     st.session_state.rotations[idx] = 270
                     st.rerun()
 
@@ -119,12 +111,10 @@ with tab1:
                 ]
                 st.caption(f"現在の回転設定：{' / '.join(settings)}")
 
-        # --- プレビュー ---
         st.divider()
         with st.expander("🔍 プレビューを表示する", expanded=True):
             show_preview(pdf_bytes, rotations=st.session_state.rotations)
 
-        # --- 実行ボタン ---
         st.divider()
         if st.button("✅ 実行してダウンロード", key="btn_reorder"):
             try:
@@ -155,9 +145,6 @@ with tab1:
                 st.error(f"エラーが発生しました：{e}")
 
 
-# ==========================
-# 機能2：PDF結合
-# ==========================
 with tab2:
     st.header("複数PDFの結合")
     uploaded_files = st.file_uploader(
@@ -214,9 +201,6 @@ with tab2:
                 st.error(f"エラーが発生しました：{e}")
 
 
-# ==========================
-# 機能3：PDF → 画像変換
-# ==========================
 with tab3:
     st.header("PDF → 画像変換")
     uploaded = st.file_uploader("PDFをアップロード", type="pdf", key="convert")
