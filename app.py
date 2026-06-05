@@ -66,10 +66,7 @@
     margin: 0 auto 32px;
     transition: all 0.2s;
   }
-  .drop-zone.dragover {
-    background: #fcd0e8;
-    border-color: #f490c0;
-  }
+  .drop-zone.dragover { background: #fcd0e8; border-color: #f490c0; }
   .drop-zone-title {
     color: #c762a0;
     font-size: 1.1rem;
@@ -105,52 +102,46 @@
     margin-bottom: 12px;
   }
 
-  /* 一括操作バー */
-  .bulk-bar {
+  /* 選択操作バー */
+  .sel-bar {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: wrap;
     background: #fde8f3;
     border: 2px solid #f9b8d8;
-    border-radius: 16px;
-    padding: 10px 16px;
-    margin-bottom: 18px;
+    border-radius: 14px;
+    padding: 9px 14px;
+    margin-bottom: 10px;
   }
-  .bulk-bar-label {
+  .sel-bar-label {
     color: #c762a0;
-    font-size: 0.9rem;
-    font-weight: bold;margin-right: 4px;
+    font-size: 0.88rem;
+    font-weight: bold;
   }
-  .bulk-btn {
+  .sel-bar-btn {
     background: white;
     border: 2px solid #f9b8d8;
-    border-radius: 20px;
-    padding: 6px 18px;
-    font-size: 0.9rem;
+    border-radius: 16px;
+    padding: 4px 14px;
+    font-size: 0.85rem;
     font-weight: bold;
     color: #b07aad;
     cursor: pointer;
     transition: all 0.2s;
   }
-  .bulk-btn:hover { background: #f9b8d8; color: #7a2e5e; }
-  .bulk-btn.danger:hover { background: #f490c0; color: white; }
-  .bulk-rotate-btn {
-    background: white;
-    border: 2px solid #f9b8d8;
-    border-radius: 20px;
-    padding: 6px 20px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #c762a0;
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .bulk-rotate-btn:hover { background: #f9b8d8; color: #7a2e5e; }
-  .selected-count {
+  .sel-bar-btn:hover { background: #f9b8d8; color: #7a2e5e; }
+  .sel-count {
     color: #d96ea0;
     font-size: 0.85rem;
+    font-weight: bold;
     margin-left: auto;
+  }
+
+  .hint-text {
+    color: #b07aad;
+    font-size: 0.8rem;
+    margin-bottom: 14px;
   }
 
   .pages-grid {
@@ -159,6 +150,7 @@
     gap: 16px;
     margin-bottom: 32px;
   }
+
   .page-card {
     background: white;
     border: 2px solid #f9b8d8;
@@ -166,15 +158,12 @@
     width: 160px;
     padding: 10px;
     text-align: center;
-    cursor: grab;
+    cursor: pointer;
     user-select: none;
-    transition: box-shadow 0.2s, transform 0.2s, border-color 0.15s;
+    transition: box-shadow 0.2s, transform 0.15s, border-color 0.15s;
     position: relative;
   }
-  .page-card:hover {
-    box-shadow: 0 4px 16px #f9b8d840;
-    transform: translateY(-2px);
-  }
+  .page-card:hover { box-shadow: 0 4px 16px #f9b8d840; }
   .page-card.selected {
     border-color: #f490c0;
     background: #fff0f8;
@@ -183,47 +172,37 @@
   .page-card.dragging { opacity: 0.4; }
   .page-card.drag-over { border-color: #f490c0; background: #fde8f3; }
 
-  /* 選択チェックマーク */
+  /* チェックバッジ */
   .page-check {
     position: absolute;
-    top: 6px;
-    right: 8px;
-    width: 20px;
-    height: 20px;
+    top: 6px; right: 8px;
+    width: 20px; height: 20px;
     border-radius: 50%;
     border: 2px solid #f9b8d8;
     background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.7rem;
-    color: white;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.7rem; color: white;
     transition: all 0.15s;
+    pointer-events: none;
   }
-  .page-card.selected .page-check {
-    background: #f490c0;
-    border-color: #f490c0;
-  }
+  .page-card.selected .page-check { background: #f490c0; border-color: #f490c0; }
 
   .page-canvas-wrap {
     width: 100%;
     min-height: 80px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 8px;
-    margin-top: 4px;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 8px; margin-top: 4px;
+    pointer-events: none;
   }
-  .page-canvas-wrap canvas {
-    width: 100%;
-    border-radius: 8px;
-    display: block;
-  }
+  .page-canvas-wrap canvas { width: 100%; border-radius: 8px; display: block; }
+
   .page-label {
     color: #b07aad;
     font-size: 0.8rem;
     margin-bottom: 8px;
+    pointer-events: none;
   }
+
   .rotate-buttons {
     display: flex;
     justify-content: center;
@@ -233,18 +212,16 @@
     background: #fde8f3;
     border: 1px solid #f9b8d8;
     border-radius: 50%;
-    width: 32px;
-    height: 32px;
+    width: 32px; height: 32px;
     font-size: 1rem;
     cursor: pointer;
     color: #c762a0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    display: flex; align-items: center; justify-content: center;
     transition: background 0.2s;
   }
   .rotate-btn:hover { background: #f9b8d8; color: #7a2e5e; }
 
+  /* 結合タブ */
   .merge-file-section {
     background: white;
     border: 2px solid #f9b8d8;
@@ -253,127 +230,59 @@
     margin-bottom: 20px;
   }
   .merge-file-header {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    margin-bottom: 8px;cursor: grab;
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 10px;
+    cursor: grab;
     padding: 6px 8px;
     border-radius: 10px;
     background: #fde8f3;}
   .merge-file-header:hover { background: #fcd0e8; }
   .merge-file-header.dragging { opacity: 0.4; }
   .merge-file-header.drag-over { outline: 2px dashed #f490c0; }
-  .merge-file-name {
-    font-weight: bold;
-    color: #c762a0;
-    font-size: 0.95rem;
-    flex: 1;
-  }
-  .merge-file-pages {
-    color: #b07aad;
-    font-size: 0.8rem;
-  }
+  .merge-file-name { font-weight: bold; color: #c762a0; font-size: 0.95rem; flex: 1; }
+  .merge-file-pages { color: #b07aad; font-size: 0.8rem; }
   .remove-file-btn {
-    background: #fde8f3;
-    border: 1px solid #f9b8d8;
-    border-radius: 50%;
-    width: 28px;
-    height: 28px;
-    font-size: 0.9rem;
-    cursor: pointer;
-    color: #c762a0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background 0.2s;flex-shrink: 0;
+    background: #fde8f3; border: 1px solid #f9b8d8;
+    border-radius: 50%; width: 28px; height: 28px;
+    font-size: 0.9rem; cursor: pointer; color: #c762a0;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s; flex-shrink: 0;
   }
   .remove-file-btn:hover { background: #f9b8d8; color: #7a2e5e; }
 
-  /* 結合タブ用一括バー */
-  .merge-bulk-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    background: #fef6fb;
-    border: 1px solid #f9b8d8;
-    border-radius: 12px;
-    padding: 7px 12px;
-    margin-bottom: 10px;
-  }
-  .merge-bulk-bar .bulk-bar-label {
-    font-size: 0.82rem;
-  }
-  .merge-bulk-bar .bulk-btn,
-  .merge-bulk-bar .bulk-rotate-btn {
-    font-size: 0.82rem;
-    padding: 4px 14px;
-  }
-  .merge-bulk-bar .selected-count {
-    font-size: 0.8rem;
-  }
-
-  .btn-area {
-    text-align: center;
-    margin-bottom: 24px;
-  }
+  .btn-area { text-align: center; margin-bottom: 24px; }
   .download-btn {
-    background: #f9b8d8;
-    color: #7a2e5e;
-    border: none;
-    border-radius: 24px;
-    padding: 14px 48px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s;
+    background: #f9b8d8; color: #7a2e5e;
+    border: none; border-radius: 24px;
+    padding: 14px 48px; font-size: 1.1rem; font-weight: bold;
+    cursor: pointer; transition: background 0.2s;
   }
   .download-btn:hover:not(:disabled) { background: #f490c0; color: white; }
   .download-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
   #loading {
-    display: none;text-align: center;
-    color: #c762a0;
-    font-size: 1rem;
-    margin: 24px 0;
+    display: none; text-align: center;
+    color: #c762a0; font-size: 1rem; margin: 24px 0;
   }
   .spinner {
-    display: inline-block;
-    width: 32px;
-    height: 32px;
-    border: 4px solid #f9b8d8;
-    border-top-color: #d96ea0;
-    border-radius: 50%;
-    animation: spin 0.8s linear infinite;
-    vertical-align: middle;
-    margin-right: 8px;
+    display: inline-block; width: 32px; height: 32px;
+    border: 4px solid #f9b8d8; border-top-color: #d96ea0;
+    border-radius: 50%; animation: spin 0.8s linear infinite;
+    vertical-align: middle; margin-right: 8px;
   }
   @keyframes spin { to { transform: rotate(360deg); } }
 
   .success-msg {
-    display: none;
-    text-align: center;
-    color: #2e7a52;
-    background: #e8f8ee;
-    border: 1px solid #a0e0bc;
-    border-radius: 12px;
-    padding: 12px 24px;
-    margin: 16px auto;
-    max-width: 500px;
-    font-weight: bold;
+    display: none; text-align: center;
+    color: #2e7a52; background: #e8f8ee;
+    border: 1px solid #a0e0bc; border-radius: 12px;
+    padding: 12px 24px; margin: 16px auto; max-width: 500px; font-weight: bold;
   }
   .error-msg {
-    display: none;
-    text-align: center;
-    color: #7a2e2e;
-    background: #f8e8e8;
-    border: 1px solid #e0a0a0;
-    border-radius: 12px;
-    padding: 12px 24px;
-    margin: 16px auto;
-    max-width: 500px;
-    font-weight: bold;
-    word-break: break-all;
+    display: none; text-align: center;
+    color: #7a2e2e; background: #f8e8e8;
+    border: 1px solid #e0a0a0; border-radius: 12px;
+    padding: 12px 24px; margin: 16px auto; max-width: 500px;font-weight: bold; word-break: break-all;
   }
 </style>
 </head>
@@ -393,24 +302,19 @@
   <div id="tab-sort" class="tab-content active">
     <div class="drop-zone" id="sort-drop-zone">
       <div class="drop-zone-title">📄ここにPDFをドロップ</div>
-      <span class="drop-zone-sub">またはボタンからファイルを選択</span><button class="select-btn" type="button" onclick="document.getElementById('sort-file-input').click()">📂ファイルを選択</button>
+      <span class="drop-zone-sub">またはボタンからファイルを選択</span><button class="select-btn" type="button" onclick="document.getElementById('sort-file-input').click()">📂 ファイルを選択</button>
       <input type="file" id="sort-file-input" accept=".pdf" style="display:none;">
     </div>
     <div id="sort-pages-section" style="display:none;">
       <p class="section-title">📋 ページ一覧</p>
-
-      <!-- 並び替えタブ一括バー -->
-      <div class="bulk-bar">
-        <span class="bulk-bar-label">選択操作：</span>
-        <button class="bulk-btn" type="button" onclick="sortSelectAll()">全選択</button>
-        <button class="bulk-btn" type="button" onclick="sortDeselectAll()">選択解除</button>
-        <span style="color:#e0a0c0;margin:0 4px;">|</span>
-        <span class="bulk-bar-label">選択ページを回転：</span>
-        <button class="bulk-rotate-btn" type="button" onclick="sortBulkRotate(-90)">↺ 左90°</button>
-        <button class="bulk-rotate-btn" type="button" onclick="sortBulkRotate(90)">↻ 右90°</button>
-        <button class="bulk-rotate-btn" type="button" onclick="sortBulkRotate(180)">↕ 180°</button>
-        <span class="selected-count" id="sort-selected-count">0ページ選択中</span>
-      </div><p style="color:#b07aad;font-size:0.82rem;margin-bottom:14px;">💡 カードをクリックで選択／ドラッグで並び替え</p><div class="pages-grid" id="sort-pages-grid"></div>
+      <div class="sel-bar" id="sort-sel-bar">
+        <span class="sel-bar-label">選択：</span>
+        <button class="sel-bar-btn" type="button" onclick="sortSelectAll()">全選択</button>
+        <button class="sel-bar-btn" type="button" onclick="sortDeselectAll()">全解除</button>
+        <span class="sel-count" id="sort-sel-count">0ページ選択中</span>
+      </div>
+      <p class="hint-text">💡 カードをクリックで選択 → 選択中のページは回転ボタンでまとめて回転します。ドラッグで並び替えも可能です。</p>
+      <div class="pages-grid" id="sort-pages-grid"></div>
       <div class="btn-area">
         <button class="download-btn" id="sort-download-btn" type="button" onclick="generateSortPDF()">📥 PDFを出力する</button>
       </div><div class="success-msg" id="sort-success-msg">🌸 ダウンロードを開始しました！</div>
@@ -445,9 +349,8 @@ pdfjsLib.GlobalWorkerOptions.workerSrc = '';
 // タブ切り替え
 // ==========================
 function switchTab(name) {
-  var btns = document.querySelectorAll('.tab-btn');
-  btns[0].classList.toggle('active', name === 'sort');
-  btns[1].classList.toggle('active', name === 'merge');
+  document.querySelectorAll('.tab-btn')[0].classList.toggle('active', name === 'sort');
+  document.querySelectorAll('.tab-btn')[1].classList.toggle('active', name === 'merge');
   document.getElementById('tab-sort').classList.toggle('active', name === 'sort');
   document.getElementById('tab-merge').classList.toggle('active', name === 'merge');
 }
@@ -481,8 +384,7 @@ document.getElementById('sort-file-input').addEventListener('change', function()
 function loadSortPDF(file) {
   document.getElementById('loading').style.display = 'block';
   document.getElementById('sort-pages-section').style.display = 'none';
-  hideMsg('sort-success-msg');
-  hideMsg('sort-error-msg');
+  hideMsg('sort-success-msg'); hideMsg('sort-error-msg');
 
   var reader = new FileReader();
   reader.onload = function(e) {
@@ -494,26 +396,21 @@ function loadSortPDF(file) {
       .then(function(doc) {
         sortPdfjsDoc = doc;
         var total = doc.numPages;
-        sortPageOrder = [];
-        sortRotations = {};
-        for (var i = 0; i < total; i++) {
-          sortPageOrder.push(i);sortRotations[i] = 0;
-        }
+        sortPageOrder = []; sortRotations = {};
+        for (var i = 0; i < total; i++) { sortPageOrder.push(i); sortRotations[i] = 0; }
         return renderSortAllPages();
       })
       .then(function() {
         document.getElementById('sort-pages-section').style.display = 'block';
         document.getElementById('loading').style.display = 'none';
-        updateSortSelectedCount();
+        updateSortSelCount();
       })
       .catch(function(err) {
-        showError('sort-error-msg', err);document.getElementById('loading').style.display = 'none';
+        showError('sort-error-msg', err);
+        document.getElementById('loading').style.display = 'none';
       });
   };
-  reader.onerror = function(e) {
-    showError('sort-error-msg', e);
-    document.getElementById('loading').style.display = 'none';
-  };
+  reader.onerror = function(e) { showError('sort-error-msg', e); document.getElementById('loading').style.display = 'none'; };
   reader.readAsArrayBuffer(file);
 }
 
@@ -535,7 +432,6 @@ function createSortCard(orderIdx, originalIdx) {
   card.draggable = true;
   card.dataset.originalIdx = String(originalIdx);
 
-  // 選択チェックマーク
   var check = document.createElement('div');
   check.className = 'page-check';
   check.textContent = '✓';
@@ -559,23 +455,22 @@ function createSortCard(orderIdx, originalIdx) {
   btnR.textContent = '↻'; btnR.title = '右に90°回転';
 
   (function(c, idx) {
-    // カードクリックで選択トグル（ボタン以外の部分）
+    // カードクリックで選択トグル（ドラッグ中・ボタンクリック時は除外）
     c.addEventListener('click', function(e) {
       if (e.target.closest('.rotate-btn')) return;
       c.classList.toggle('selected');
-      updateSortSelectedCount();
+      updateSortSelCount();
     });
+
+    // 回転ボタン：選択中なら選択済み全部、そうでなければこの1枚だけ
     btnL.addEventListener('click', function(e) {
       e.stopPropagation();
-      sortRotations[idx] = ((sortRotations[idx] || 0) - 90+ 360) % 360;
-      renderSortCanvas(c, idx);
+      sortRotateCards(c, idx, -90);
     });
     btnR.addEventListener('click', function(e) {
       e.stopPropagation();
-      sortRotations[idx] = ((sortRotations[idx] || 0) + 90) % 360;
-      renderSortCanvas(c, idx);
-    });
-  })(card, originalIdx);
+      sortRotateCards(c, idx, 90);
+    });})(card, originalIdx);
 
   btnArea.appendChild(btnL);
   btnArea.appendChild(btnR);
@@ -587,6 +482,41 @@ function createSortCard(orderIdx, originalIdx) {
   return card;
 }
 
+//選択中ページをまとめて回転。選択なしならそのカードだけ回転
+function sortRotateCards(clickedCard, clickedIdx, deg) {
+  var grid = document.getElementById('sort-pages-grid');
+  var selected = Array.from(grid.querySelectorAll('.page-card.selected'));
+
+  if (selected.length === 0) {
+    // 選択なし → このカードだけ
+    sortRotations[clickedIdx] = ((sortRotations[clickedIdx] || 0) + deg + 360) % 360;
+    renderSortCanvas(clickedCard, clickedIdx);
+    return;
+  }
+  // 選択あり → 選択済み全部
+  selected.forEach(function(card) {
+    var idx = parseInt(card.dataset.originalIdx, 10);
+    sortRotations[idx] = ((sortRotations[idx] || 0) + deg + 360) % 360;
+    renderSortCanvas(card, idx);
+  });
+}
+
+function updateSortSelCount() {
+  var count = document.querySelectorAll('#sort-pages-grid .page-card.selected').length;
+  document.getElementById('sort-sel-count').textContent = count +'ページ選択中';
+}
+
+function sortSelectAll() {
+  Array.from(document.querySelectorAll('#sort-pages-grid .page-card'))
+    .forEach(function(c) { c.classList.add('selected'); });
+  updateSortSelCount();
+}
+function sortDeselectAll() {
+  Array.from(document.querySelectorAll('#sort-pages-grid .page-card'))
+    .forEach(function(c) { c.classList.remove('selected'); });
+  updateSortSelCount();
+}
+
 function renderSortCanvas(card, originalIdx) {
   var wrap = card.querySelector('.page-canvas-wrap');
   var rotation = sortRotations[originalIdx] || 0;
@@ -594,43 +524,11 @@ function renderSortCanvas(card, originalIdx) {
     var viewport = page.getViewport({ scale: 0.4, rotation: rotation });
     var canvas = wrap.querySelector('canvas');
     if (!canvas) { canvas = document.createElement('canvas'); wrap.appendChild(canvas); }
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
+    canvas.width = viewport.width; canvas.height = viewport.height;
     var ctx = canvas.getContext('2d');
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     return page.render({ canvasContext: ctx, viewport: viewport }).promise;
   });
-}
-
-//全選択・全解除
-function sortSelectAll() {
-  Array.from(document.querySelectorAll('#sort-pages-grid .page-card'))
-    .forEach(function(c) { c.classList.add('selected'); });
-  updateSortSelectedCount();
-}
-function sortDeselectAll() {
-  Array.from(document.querySelectorAll('#sort-pages-grid .page-card'))
-    .forEach(function(c) { c.classList.remove('selected'); });
-  updateSortSelectedCount();
-}
-
-// 選択数表示更新
-function updateSortSelectedCount() {
-  var count = document.querySelectorAll('#sort-pages-grid .page-card.selected').length;
-  document.getElementById('sort-selected-count').textContent = count +'ページ選択中';
-}
-
-// 一括回転（並び替えタブ）
-function sortBulkRotate(deg) {
-  var selected = Array.from(document.querySelectorAll('#sort-pages-grid .page-card.selected'));
-  if (selected.length === 0) return;
-  var promises = [];
-  selected.forEach(function(card) {
-    var idx = parseInt(card.dataset.originalIdx, 10);
-    sortRotations[idx] = ((sortRotations[idx] || 0) + deg + 360) % 360;
-    promises.push(renderSortCanvas(card, idx));
-  });
-  return Promise.all(promises);
 }
 
 function setupSortCardDrag(card) {
@@ -640,8 +538,7 @@ function setupSortCardDrag(card) {
   });
   card.addEventListener('dragend', function() {
     card.classList.remove('dragging');
-    sortDragSrc = null;
-    rebuildSortPageOrder();
+    sortDragSrc = null;rebuildSortPageOrder();
     updateSortLabels();
   });
   card.addEventListener('dragover', function(e) {
@@ -650,24 +547,19 @@ function setupSortCardDrag(card) {
   });
   card.addEventListener('dragleave', function() { card.classList.remove('drag-over'); });
   card.addEventListener('drop', function(e) {
-    e.preventDefault();
-    card.classList.remove('drag-over');
+    e.preventDefault(); card.classList.remove('drag-over');
     if (!sortDragSrc || sortDragSrc === card) return;
     var grid = document.getElementById('sort-pages-grid');
     var cards = Array.from(grid.querySelectorAll('.page-card'));
-    var si = cards.indexOf(sortDragSrc);
-    var ti = cards.indexOf(card);
+    var si = cards.indexOf(sortDragSrc), ti = cards.indexOf(card);
     if (si < ti) grid.insertBefore(sortDragSrc, card.nextSibling);
-    elsegrid.insertBefore(sortDragSrc, card);
-  });
+    else grid.insertBefore(sortDragSrc, card);});
 }
 
 function rebuildSortPageOrder() {
-  sortPageOrder = Array.from(
-    document.querySelectorAll('#sort-pages-grid .page-card')
-  ).map(function(c) { return parseInt(c.dataset.originalIdx, 10); });
+  sortPageOrder = Array.from(document.querySelectorAll('#sort-pages-grid .page-card'))
+    .map(function(c) { return parseInt(c.dataset.originalIdx, 10); });
 }
-
 function updateSortLabels() {
   Array.from(document.querySelectorAll('#sort-pages-grid .page-card'))
     .forEach(function(card, i) {
@@ -678,10 +570,8 @@ function updateSortLabels() {
 
 function generateSortPDF() {
   var btn = document.getElementById('sort-download-btn');
-  btn.textContent = '⏳ 生成中...';
-  btn.disabled = true;
-  hideMsg('sort-success-msg');
-  hideMsg('sort-error-msg');
+  btn.textContent = '⏳ 生成中...'; btn.disabled = true;
+  hideMsg('sort-success-msg'); hideMsg('sort-error-msg');
   rebuildSortPageOrder();
 
   var copyForPdfLib = new Uint8Array(sortRawBuffer.slice(0));
@@ -704,12 +594,10 @@ function generateSortPDF() {
     })
     .then(function(bytes) {
       downloadBlob(bytes, sortOriginalFileName + '_sorted.pdf');
-      showMsg('sort-success-msg');})
+      showMsg('sort-success-msg');
+    })
     .catch(function(err) { showError('sort-error-msg', err); })
-    .finally(function() {
-      btn.textContent = '📥 PDFを出力する';
-      btn.disabled = false;
-    });
+    .finally(function() { btn.textContent = '📥 PDFを出力する'; btn.disabled = false; });
 }
 
 // ==========================
@@ -728,23 +616,18 @@ document.getElementById('merge-drop-zone').addEventListener('dragleave', functio
 });
 document.getElementById('merge-drop-zone').addEventListener('drop', function(e) {
   e.preventDefault(); this.classList.remove('dragover');
-  var files = Array.from(e.dataTransfer.files).filter(function(f) {
-    return f.name.toLowerCase().endsWith('.pdf');
-  });
+  var files = Array.from(e.dataTransfer.files).filter(function(f) { return f.name.toLowerCase().endsWith('.pdf'); });
   if (files.length) loadMergeFiles(files);
 });
 document.getElementById('merge-file-input').addEventListener('change', function() {
-  var files = Array.from(this.files).filter(function(f) {
-    return f.name.toLowerCase().endsWith('.pdf');
-  });
+  var files = Array.from(this.files).filter(function(f) { return f.name.toLowerCase().endsWith('.pdf'); });
   if (files.length) loadMergeFiles(files);
   this.value = '';
 });
 
 function loadMergeFiles(files) {
   document.getElementById('loading').style.display = 'block';
-  hideMsg('merge-success-msg');
-  hideMsg('merge-error-msg');
+  hideMsg('merge-success-msg'); hideMsg('merge-error-msg');
 
   var chain = Promise.resolve();
   files.forEach(function(file) {
@@ -757,17 +640,13 @@ function loadMergeFiles(files) {
           pdfjsLib.getDocument({ data: copyForPdfjs }).promise
             .then(function(doc) {
               var count = doc.numPages;
-              var order = []; var rots = {};
+              var order = [], rots = {};
               for (var i = 0; i < count; i++) { order.push(i); rots[i] = 0; }
               var fd = {
-                id: mergeFileIdSeq++,
-                name: file.name,
-                rawBuffer: rawBuffer,
-                pdfjsDoc: doc,
-                pageCount: count,
-                pageOrder: order,
-                rotations: rots,
-                canvasCache: {}
+                id: mergeFileIdSeq++, name: file.name,
+                rawBuffer: rawBuffer, pdfjsDoc: doc,
+                pageCount: count, pageOrder: order,
+                rotations: rots, canvasCache: {}
               };
               mergeFiles.push(fd);
               return appendMergeSection(fd);
@@ -793,7 +672,7 @@ function appendMergeSection(fd) {
   var grid = section.querySelector('.pages-grid');
   var promises = [];
   fd.pageOrder.forEach(function(originalIdx, i) {
-    var card = createMergeCard(fd, i, originalIdx);
+    var card = createMergeCard(fd, i, originalIdx, grid);
     grid.appendChild(card);
     promises.push(renderMergeCanvas(card, fd, originalIdx));
   });
@@ -809,7 +688,6 @@ function buildMergeSection(fd) {
   var header = document.createElement('div');
   header.className = 'merge-file-header';
   header.draggable = true;
-  header.dataset.fileId = String(fd.id);
 
   var icon = document.createElement('span');
   icon.textContent = '☰'; icon.style.color = '#d96ea0';
@@ -825,134 +703,67 @@ function buildMergeSection(fd) {
   var removeBtn = document.createElement('button');
   removeBtn.type = 'button'; removeBtn.className = 'remove-file-btn';
   removeBtn.textContent = '✕';
-  (function(fileData, sec) {
-    removeBtn.addEventListener('click', function() {
-      mergeFiles = mergeFiles.filter(function(f) { return f.id !== fileData.id; });
-      sec.remove();
-      if (mergeFiles.length === 0)
-        document.getElementById('merge-pages-section').style.display = 'none';
-    });
-  })(fd, section);
 
-  header.appendChild(icon);
-  header.appendChild(nameSpan);
-  header.appendChild(pagesSpan);
-  header.appendChild(removeBtn);
+  header.appendChild(icon); header.appendChild(nameSpan);
+  header.appendChild(pagesSpan); header.appendChild(removeBtn);
 
-  // 一括操作バー（結合タブ用）
-  var bulkBar = document.createElement('div');
-  bulkBar.className = 'merge-bulk-bar';
+  // 選択バー
+  var selBar = document.createElement('div');
+  selBar.className = 'sel-bar';
 
-  var bulkLabel = document.createElement('span');
-  bulkLabel.className = 'bulk-bar-label';
-  bulkLabel.textContent = '選択：';
+  var selLabel = document.createElement('span');
+  selLabel.className = 'sel-bar-label'; selLabel.textContent = '選択：';
 
   var btnAll = document.createElement('button');
-  btnAll.type = 'button'; btnAll.className = 'bulk-btn';
-  btnAll.textContent = '全選択';
+  btnAll.type = 'button'; btnAll.className = 'sel-bar-btn'; btnAll.textContent = '全選択';
 
   var btnNone = document.createElement('button');
-  btnNone.type = 'button'; btnNone.className = 'bulk-btn';
-  btnNone.textContent = '解除';
-
-  var sep = document.createElement('span');
-  sep.style.cssText = 'color:#e0a0c0;margin:0 2px;';
-  sep.textContent = '|';
-
-  var rotLabel = document.createElement('span');
-  rotLabel.className = 'bulk-bar-label';
-  rotLabel.textContent = '回転：';
-
-  var btnBL = document.createElement('button');
-  btnBL.type = 'button'; btnBL.className = 'bulk-rotate-btn';
-  btnBL.textContent = '↺ 左90°';
-
-  var btnBR = document.createElement('button');
-  btnBR.type = 'button'; btnBR.className = 'bulk-rotate-btn';
-  btnBR.textContent = '↻ 右90°';
-
-  var btnB180 = document.createElement('button');
-  btnB180.type = 'button'; btnB180.className = 'bulk-rotate-btn';
-  btnB180.textContent = '↕ 180°';
+  btnNone.type = 'button'; btnNone.className = 'sel-bar-btn'; btnNone.textContent = '全解除';
 
   var countSpan = document.createElement('span');
-  countSpan.className = 'selected-count';
-  countSpan.textContent = '0ページ選択中';
+  countSpan.className = 'sel-count'; countSpan.textContent = '0ページ選択中';
 
-  var sectionEl = section; // クロージャ用
-  (function(fileData, grid, cs) {
-    btnAll.addEventListener('click', function() {
-      Array.from(grid.querySelectorAll('.page-card')).forEach(function(c) { c.classList.add('selected'); });
-      updateMergeBulkCount(grid, cs);
-    });
-    btnNone.addEventListener('click', function() {
-      Array.from(grid.querySelectorAll('.page-card')).forEach(function(c) { c.classList.remove('selected'); });
-      updateMergeBulkCount(grid, cs);
-    });
-    btnBL.addEventListener('click', function() { mergeBulkRotate(fileData, grid, cs, -90); });
-    btnBR.addEventListener('click', function() { mergeBulkRotate(fileData, grid, cs, 90); });
-    btnB180.addEventListener('click', function() { mergeBulkRotate(fileData, grid, cs, 180); });
-  })(fd, null, countSpan); // gridはあとでセット
-
-  bulkBar.appendChild(bulkLabel);
-  bulkBar.appendChild(btnAll);
-  bulkBar.appendChild(btnNone);
-  bulkBar.appendChild(sep);
-  bulkBar.appendChild(rotLabel);
-  bulkBar.appendChild(btnBL);
-  bulkBar.appendChild(btnBR);
-  bulkBar.appendChild(btnB180);
-  bulkBar.appendChild(countSpan);
+  selBar.appendChild(selLabel); selBar.appendChild(btnAll);
+  selBar.appendChild(btnNone); selBar.appendChild(countSpan);
 
   var hint = document.createElement('p');
-  hint.style.cssText = 'color:#b07aad;font-size:0.78rem;margin-bottom:8px;';
-  hint.textContent = '💡 カードをクリックで選択／ドラッグで並び替え';
+  hint.className = 'hint-text';
+  hint.textContent = '💡 カードをクリックで選択 → 選択中のページは回転ボタンでまとめて回転します。ドラッグで並び替えも可能です。';
 
   var grid = document.createElement('div');
-  grid.className = 'pages-grid';
-  grid.style.marginTop = '4px';
+  grid.className = 'pages-grid'; grid.style.marginTop = '4px';
 
-  // gridが確定してからイベントを正しく繋ぎ直す
+  // イベント
   (function(fileData, g, cs) {
     btnAll.onclick = function() {
       Array.from(g.querySelectorAll('.page-card')).forEach(function(c) { c.classList.add('selected'); });
-      updateMergeBulkCount(g, cs);
+      updateMergeSelCount(g, cs);
     };
     btnNone.onclick = function() {
       Array.from(g.querySelectorAll('.page-card')).forEach(function(c) { c.classList.remove('selected'); });
-      updateMergeBulkCount(g, cs);
+      updateMergeSelCount(g, cs);
     };
-    btnBL.onclick = function() { mergeBulkRotate(fileData, g, cs, -90); };
-    btnBR.onclick = function() { mergeBulkRotate(fileData, g, cs, 90); };
-    btnB180.onclick = function() { mergeBulkRotate(fileData, g, cs, 180); };
+    removeBtn.onclick = function() {
+      mergeFiles = mergeFiles.filter(function(f) { return f.id !== fileData.id; });
+      section.remove();
+      if (mergeFiles.length === 0) document.getElementById('merge-pages-section').style.display = 'none';
+    };
   })(fd, grid, countSpan);
 
   section.appendChild(header);
-  section.appendChild(bulkBar);
+  section.appendChild(selBar);
   section.appendChild(hint);
   section.appendChild(grid);
   setupMergeFileDrag(header, section);
   return section;
 }
 
-function updateMergeBulkCount(grid, countSpan) {
+function updateMergeSelCount(grid, countSpan) {
   var count = grid.querySelectorAll('.page-card.selected').length;
   countSpan.textContent = count + 'ページ選択中';
 }
 
-function mergeBulkRotate(fd, grid, countSpan, deg) {
-  var selected = Array.from(grid.querySelectorAll('.page-card.selected'));
-  if (selected.length === 0) return;
-  selected.forEach(function(card) {
-    var idx = parseInt(card.dataset.originalIdx, 10);
-    var prev = fd.rotations[idx] || 0;
-    fd.rotations[idx] = (prev + deg + 360) % 360;
-    delete fd.canvasCache[idx + '_' + prev];
-    renderMergeCanvas(card, fd, idx);
-  });
-}
-
-function createMergeCard(fd, orderIdx, originalIdx) {
+function createMergeCard(fd, orderIdx, originalIdx, grid) {
   var card = document.createElement('div');
   card.className = 'page-card';
   card.draggable = true;
@@ -960,15 +771,13 @@ function createMergeCard(fd, orderIdx, originalIdx) {
   card.dataset.originalIdx = String(originalIdx);
 
   var check = document.createElement('div');
-  check.className = 'page-check';
-  check.textContent = '✓';
+  check.className = 'page-check'; check.textContent = '✓';
 
   var wrap = document.createElement('div');
   wrap.className = 'page-canvas-wrap';
 
   var label = document.createElement('div');
-  label.className = 'page-label';
-  label.textContent = 'p.' + (orderIdx + 1);
+  label.className = 'page-label'; label.textContent = 'p.' + (orderIdx + 1);
 
   var btnArea = document.createElement('div');
   btnArea.className = 'rotate-buttons';
@@ -981,38 +790,49 @@ function createMergeCard(fd, orderIdx, originalIdx) {
   btnR.type = 'button'; btnR.className = 'rotate-btn';
   btnR.textContent = '↻'; btnR.title = '右に90°回転';
 
-  (function(fileData, c, idx) {
+  (function(fileData, c, idx, g) {
     c.addEventListener('click', function(e) {
       if (e.target.closest('.rotate-btn')) return;
       c.classList.toggle('selected');
-      // 親gridとcountSpanを探して更新
-      var grid = c.closest('.pages-grid');
-      var countSpan = c.closest('.merge-file-section').querySelector('.selected-count');
-      if (grid && countSpan) updateMergeBulkCount(grid, countSpan);
-    });btnL.addEventListener('click', function(e) {
+      var sec = c.closest('.merge-file-section');
+      var cs = sec ? sec.querySelector('.sel-count') : null;
+      updateMergeSelCount(g, cs);
+    });
+    btnL.addEventListener('click', function(e) {
       e.stopPropagation();
-      var prev = fileData.rotations[idx] || 0;
-      fileData.rotations[idx] = (prev - 90 + 360) % 360;
-      delete fileData.canvasCache[idx + '_' + prev];
-      renderMergeCanvas(c, fileData, idx);
+      mergeRotateCards(fileData, c, idx, g, -90);
     });
     btnR.addEventListener('click', function(e) {
       e.stopPropagation();
-      var prev = fileData.rotations[idx] || 0;
-      fileData.rotations[idx] = (prev + 90) % 360;
-      delete fileData.canvasCache[idx + '_' + prev];
-      renderMergeCanvas(c, fileData, idx);
+      mergeRotateCards(fileData, c, idx, g, 90);
     });
-  })(fd, card, originalIdx);
+  })(fd, card, originalIdx, grid);
 
-  btnArea.appendChild(btnL);
-  btnArea.appendChild(btnR);
-  card.appendChild(check);
-  card.appendChild(wrap);
-  card.appendChild(label);
-  card.appendChild(btnArea);
+  btnArea.appendChild(btnL); btnArea.appendChild(btnR);
+  card.appendChild(check); card.appendChild(wrap);
+  card.appendChild(label); card.appendChild(btnArea);
   setupMergeCardDrag(card, fd);
   return card;
+}
+
+// 選択中ページをまとめて回転。選択なしならそのカードだけ回転
+function mergeRotateCards(fd, clickedCard, clickedIdx, grid, deg) {
+  var selected = Array.from(grid.querySelectorAll('.page-card.selected'));
+
+  if (selected.length === 0) {
+    var prev = fd.rotations[clickedIdx] || 0;
+    fd.rotations[clickedIdx] = (prev + deg + 360) % 360;
+    delete fd.canvasCache[clickedIdx + '_' + prev];
+    renderMergeCanvas(clickedCard, fd, clickedIdx);
+    return;
+  }
+  selected.forEach(function(card) {
+    var idx = parseInt(card.dataset.originalIdx, 10);
+    var prev = fd.rotations[idx] || 0;
+    fd.rotations[idx] = (prev + deg + 360) % 360;
+    delete fd.canvasCache[idx + '_' + prev];
+    renderMergeCanvas(card, fd, idx);
+  });
 }
 
 function renderMergeCanvas(card, fd, originalIdx) {
@@ -1060,16 +880,14 @@ function setupMergeCardDrag(card, fd) {
   });
   card.addEventListener('dragleave', function() { card.classList.remove('drag-over'); });
   card.addEventListener('drop', function(e) {
-    e.preventDefault();
-    card.classList.remove('drag-over');
+    e.preventDefault(); card.classList.remove('drag-over');
     if (!mergePageDragSrc || mergePageDragSrc === card) return;
     if (mergePageDragSrc.dataset.fileId !== card.dataset.fileId) return;
-    var grid = card.closest('.pages-grid');
-    var cards = Array.from(grid.querySelectorAll('.page-card'));
-    var si = cards.indexOf(mergePageDragSrc);
-    var ti = cards.indexOf(card);
-    if (si < ti) grid.insertBefore(mergePageDragSrc, card.nextSibling);
-    else         grid.insertBefore(mergePageDragSrc, card);
+    var g = card.closest('.pages-grid');
+    var cards = Array.from(g.querySelectorAll('.page-card'));
+    var si = cards.indexOf(mergePageDragSrc), ti = cards.indexOf(card);
+    if (si < ti) g.insertBefore(mergePageDragSrc, card.nextSibling);
+    else g.insertBefore(mergePageDragSrc, card);
   });
 }
 
@@ -1079,7 +897,6 @@ function rebuildMergePageOrder(fd) {
   fd.pageOrder = Array.from(section.querySelectorAll('.page-card'))
     .map(function(c) { return parseInt(c.dataset.originalIdx, 10); });
 }
-
 function updateMergePageLabels(grid) {
   Array.from(grid.querySelectorAll('.page-card')).forEach(function(c, i) {
     c.querySelector('.page-label').textContent = 'p.' + (i + 1);
@@ -1107,10 +924,9 @@ function setupMergeFileDrag(header, section) {
     if (!mergeFileDragSrc || mergeFileDragSrc === section) return;
     var list = document.getElementById('merge-files-list');
     var sections = Array.from(list.querySelectorAll('.merge-file-section'));
-    var si = sections.indexOf(mergeFileDragSrc);
-    var ti = sections.indexOf(section);
+    var si = sections.indexOf(mergeFileDragSrc), ti = sections.indexOf(section);
     if (si < ti) list.insertBefore(mergeFileDragSrc, section.nextSibling);
-    else         list.insertBefore(mergeFileDragSrc, section);
+    else list.insertBefore(mergeFileDragSrc, section);
   });
 }
 
@@ -1156,16 +972,13 @@ function generateMergePDF() {
       });
     });
     return chain.then(function() { return newDoc.save({ useObjectStreams: false }); });
-  })
-  .then(function(bytes) {
+  }).then(function(bytes) {
     var mergedName = mergeFiles[0].name.replace(/\.pdf$/i, '') + '_merged.pdf';
     downloadBlob(bytes, mergedName);
     showMsg('merge-success-msg');
   })
   .catch(function(err) { showError('merge-error-msg', err); })
-  .finally(function() {
-    btn.textContent = '📎 結合してダウンロード'; btn.disabled = false;
-  });
+  .finally(function() { btn.textContent = '📎 結合してダウンロード'; btn.disabled = false; });
 }
 
 // ==========================
