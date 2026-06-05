@@ -14,256 +14,129 @@
     font-family: 'Helvetica Neue', Arial, sans-serif;
     color: #7a2e5e;
     min-height: 100vh;}
-  h1 {
-    text-align: center;
-    color: #d96ea0;
-    padding: 28px 0 6px;
-    font-size: 1.8rem;
-  }
-  .subtitle {
-    text-align: center;
-    color: #b07aad;
-    font-size: 0.9rem;
-    margin-bottom: 24px;
-  }
-  .container {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 16px;
-  }
-  .tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 28px;
-    justify-content: center;
-  }
+  h1 { text-align: center; color: #d96ea0; padding: 28px 0 6px; font-size: 1.8rem; }
+  .subtitle { text-align: center; color: #b07aad; font-size: 0.9rem; margin-bottom: 24px; }
+  .container { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+
+  .tabs { display: flex; gap: 8px; margin-bottom: 28px; justify-content: center; }
   .tab-btn {
-    background: #fde8f3;
-    border: 2px solid #f9b8d8;
-    border-radius: 24px;
-    padding: 10px 32px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #b07aad;
-    cursor: pointer;
-    transition: all 0.2s;
+    background: #fde8f3; border: 2px solid #f9b8d8; border-radius: 24px;
+    padding: 10px 32px; font-size: 1rem; font-weight: bold; color: #b07aad; cursor: pointer;
   }
-  .tab-btn.active {
-    background: #f9b8d8;
-    color: #7a2e5e;
-    border-color: #f490c0;
-  }
+  .tab-btn.active { background: #f9b8d8; color: #7a2e5e; border-color: #f490c0; }
   .tab-content { display: none; }
   .tab-content.active { display: block; }
 
   .drop-zone {
-    border: 3px dashed #f9b8d8;
-    border-radius: 20px;
-    background: #fde8f3;
-    padding: 40px 24px;
-    text-align: center;
-    max-width: 600px;
-    margin: 0 auto 32px;
-    transition: all 0.2s;
+    border: 3px dashed #f9b8d8; border-radius: 20px; background: #fde8f3;
+    padding: 40px 24px; text-align: center; max-width: 600px; margin: 0 auto 32px;
   }
   .drop-zone.dragover { background: #fcd0e8; border-color: #f490c0; }
-  .drop-zone-title {
-    color: #c762a0;
-    font-size: 1.1rem;
-    font-weight: bold;
-    margin-bottom: 8px;
-  }
-  .drop-zone-sub {
-    color: #b07aad;
-    font-size: 0.85rem;
-    display: block;
-    margin-bottom: 16px;
-  }
+  .drop-zone-title { color: #c762a0; font-size: 1.1rem; font-weight: bold; margin-bottom: 8px; }
+  .drop-zone-sub { color: #b07aad; font-size: 0.85rem; display: block; margin-bottom: 16px; }
   .select-btn {
-    display: inline-block;
-    background: #f9b8d8;
-    color: #7a2e5e;
-    border: none;
-    border-radius: 20px;
-    padding: 8px 28px;
-    font-size: 0.95rem;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background 0.2s;
+    display: inline-block; background: #f9b8d8; color: #7a2e5e; border: none;
+    border-radius: 20px; padding: 8px 28px; font-size: 0.95rem; font-weight: bold; cursor: pointer;
   }
   .select-btn:hover { background: #f490c0; color: white; }
 
   .section-title {
-    color: #c762a0;
-    font-size: 1.1rem;
-    font-weight: bold;
-    border-left: 5px solid #f9b8d8;
-    padding-left: 10px;
-    margin-bottom: 12px;
+    color: #c762a0; font-size: 1.1rem; font-weight: bold;
+    border-left: 5px solid #f9b8d8; padding-left: 10px; margin-bottom: 12px;
   }
 
-  /* 選択操作バー */
   .sel-bar {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    background: #fde8f3;
-    border: 2px solid #f9b8d8;
-    border-radius: 14px;
-    padding: 9px 14px;
-    margin-bottom: 10px;
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    background: #fde8f3; border: 2px solid #f9b8d8; border-radius: 14px;
+    padding: 9px 14px; margin-bottom: 10px;
   }
-  .sel-bar-label {
-    color: #c762a0;
-    font-size: 0.88rem;
-    font-weight: bold;
-  }
+  .sel-bar-label { color: #c762a0; font-size: 0.88rem; font-weight: bold; }
   .sel-bar-btn {
-    background: white;
-    border: 2px solid #f9b8d8;
-    border-radius: 16px;
-    padding: 4px 14px;
-    font-size: 0.85rem;
-    font-weight: bold;
-    color: #b07aad;
-    cursor: pointer;
-    transition: all 0.2s;
+    background: white; border: 2px solid #f9b8d8; border-radius: 16px;
+    padding: 4px 14px; font-size: 0.85rem; font-weight: bold; color: #b07aad; cursor: pointer;
   }
   .sel-bar-btn:hover { background: #f9b8d8; color: #7a2e5e; }
-  .sel-count {
-    color: #d96ea0;
-    font-size: 0.85rem;
-    font-weight: bold;
-    margin-left: auto;
-  }
+  .sel-count { color: #d96ea0; font-size: 0.85rem; font-weight: bold; margin-left: auto; }
 
-  .hint-text {
-    color: #b07aad;
-    font-size: 0.8rem;
-    margin-bottom: 14px;
-  }
+  .hint-text { color: #b07aad; font-size: 0.8rem; margin-bottom: 14px; }
 
-  .pages-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 32px;
-  }
+  .pages-grid { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; }
 
   .page-card {
-    background: white;
-    border: 2px solid #f9b8d8;
-    border-radius: 16px;
-    width: 160px;
-    padding: 10px;
-    text-align: center;
-    cursor: pointer;
-    user-select: none;
-    transition: box-shadow 0.2s, transform 0.15s, border-color 0.15s;
-    position: relative;
+    background: white; border: 2px solid #f9b8d8; border-radius: 16px;
+    width: 160px; padding: 10px; text-align: center;
+    user-select: none; position: relative;
+    transition: box-shadow 0.2s, border-color 0.15s;
   }
   .page-card:hover { box-shadow: 0 4px 16px #f9b8d840; }
   .page-card.selected {
-    border-color: #f490c0;
-    background: #fff0f8;
-    box-shadow: 0 0 0 3px #f9b8d8;
+    border-color: #f490c0; background: #fff0f8; box-shadow: 0 0 0 3px #f9b8d8;
   }
-  .page-card.dragging { opacity: 0.4; }
   .page-card.drag-over { border-color: #f490c0; background: #fde8f3; }
+  .page-card.dragging { opacity: 0.4; }
+
+  /*ドラッグハンドル */
+  .drag-handle {
+    position: absolute; top: 6px; left: 8px;
+    color: #d9b8d0; font-size: 0.85rem; cursor: grab; line-height: 1;
+    padding: 2px 3px;}
+  .drag-handle:active { cursor: grabbing; }
 
   /* チェックバッジ */
   .page-check {
-    position: absolute;
-    top: 6px; right: 8px;
-    width: 20px; height: 20px;
-    border-radius: 50%;
-    border: 2px solid #f9b8d8;
-    background: white;
+    position: absolute; top: 6px; right: 8px;
+    width: 20px; height: 20px; border-radius: 50%;
+    border: 2px solid #f9b8d8; background: white;
     display: flex; align-items: center; justify-content: center;
-    font-size: 0.7rem; color: white;
-    transition: all 0.15s;
-    pointer-events: none;
+    font-size: 0.7rem; color: white; pointer-events: none;
   }
   .page-card.selected .page-check { background: #f490c0; border-color: #f490c0; }
 
   .page-canvas-wrap {
-    width: 100%;
-    min-height: 80px;
+    width: 100%; min-height: 80px;
     display: flex; align-items: center; justify-content: center;
-    margin-bottom: 8px; margin-top: 4px;
-    pointer-events: none;
+    margin: 20px 0 8px; pointer-events: none;
   }
   .page-canvas-wrap canvas { width: 100%; border-radius: 8px; display: block; }
 
-  .page-label {
-    color: #b07aad;
-    font-size: 0.8rem;
-    margin-bottom: 8px;
-    pointer-events: none;
-  }
+  .page-label { color: #b07aad; font-size: 0.8rem; margin-bottom: 8px; pointer-events: none; }
 
-  .rotate-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 8px;
-  }
+  .rotate-buttons { display: flex; justify-content: center; gap: 8px; }
   .rotate-btn {
-    background: #fde8f3;
-    border: 1px solid #f9b8d8;
-    border-radius: 50%;
-    width: 32px; height: 32px;
-    font-size: 1rem;
-    cursor: pointer;
-    color: #c762a0;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s;
-  }
+    background: #fde8f3; border: 1px solid #f9b8d8; border-radius: 50%;
+    width: 32px; height: 32px; font-size: 1rem; cursor: pointer; color: #c762a0;
+    display: flex; align-items: center; justify-content: center;}
   .rotate-btn:hover { background: #f9b8d8; color: #7a2e5e; }
 
   /* 結合タブ */
   .merge-file-section {
-    background: white;
-    border: 2px solid #f9b8d8;
-    border-radius: 16px;
-    padding: 16px;
-    margin-bottom: 20px;
+    background: white; border: 2px solid #f9b8d8; border-radius: 16px;
+    padding: 16px; margin-bottom: 20px;
   }
   .merge-file-header {
-    display: flex; align-items: center; gap: 8px;
-    margin-bottom: 10px;
-    cursor: grab;
-    padding: 6px 8px;
-    border-radius: 10px;
-    background: #fde8f3;}
+    display: flex; align-items: center; gap: 8px; margin-bottom: 10px;
+    cursor: grab; padding: 6px 8px; border-radius: 10px; background: #fde8f3;}
   .merge-file-header:hover { background: #fcd0e8; }
   .merge-file-header.dragging { opacity: 0.4; }
   .merge-file-header.drag-over { outline: 2px dashed #f490c0; }
   .merge-file-name { font-weight: bold; color: #c762a0; font-size: 0.95rem; flex: 1; }
   .merge-file-pages { color: #b07aad; font-size: 0.8rem; }
   .remove-file-btn {
-    background: #fde8f3; border: 1px solid #f9b8d8;
-    border-radius: 50%; width: 28px; height: 28px;
-    font-size: 0.9rem; cursor: pointer; color: #c762a0;
-    display: flex; align-items: center; justify-content: center;
-    transition: background 0.2s; flex-shrink: 0;
+    background: #fde8f3; border: 1px solid #f9b8d8; border-radius: 50%;
+    width: 28px; height: 28px; font-size: 0.9rem; cursor: pointer; color: #c762a0;
+    display: flex; align-items: center; justify-content: center; flex-shrink: 0;
   }
   .remove-file-btn:hover { background: #f9b8d8; color: #7a2e5e; }
 
   .btn-area { text-align: center; margin-bottom: 24px; }
   .download-btn {
-    background: #f9b8d8; color: #7a2e5e;
-    border: none; border-radius: 24px;
-    padding: 14px 48px; font-size: 1.1rem; font-weight: bold;
-    cursor: pointer; transition: background 0.2s;
+    background: #f9b8d8; color: #7a2e5e; border: none; border-radius: 24px;
+    padding: 14px 48px; font-size: 1.1rem; font-weight: bold; cursor: pointer;
   }
   .download-btn:hover:not(:disabled) { background: #f490c0; color: white; }
   .download-btn:disabled { opacity: 0.6; cursor: not-allowed; }
 
-  #loading {
-    display: none; text-align: center;
-    color: #c762a0; font-size: 1rem; margin: 24px 0;
-  }
+  #loading { display: none; text-align: center; color: #c762a0; font-size: 1rem; margin: 24px 0; }
   .spinner {
     display: inline-block; width: 32px; height: 32px;
     border: 4px solid #f9b8d8; border-top-color: #d96ea0;
@@ -273,16 +146,14 @@
   @keyframes spin { to { transform: rotate(360deg); } }
 
   .success-msg {
-    display: none; text-align: center;
-    color: #2e7a52; background: #e8f8ee;
+    display: none; text-align: center; color: #2e7a52; background: #e8f8ee;
     border: 1px solid #a0e0bc; border-radius: 12px;
     padding: 12px 24px; margin: 16px auto; max-width: 500px; font-weight: bold;
   }
   .error-msg {
-    display: none; text-align: center;
-    color: #7a2e2e; background: #f8e8e8;
+    display: none; text-align: center; color: #7a2e2e; background: #f8e8e8;
     border: 1px solid #e0a0a0; border-radius: 12px;
-    padding: 12px 24px; margin: 16px auto; max-width: 500px;font-weight: bold; word-break: break-all;
+    padding: 12px 24px; margin: 16px auto; max-width: 500px; font-weight: bold; word-break: break-all;
   }
 </style>
 </head>
@@ -302,18 +173,19 @@
   <div id="tab-sort" class="tab-content active">
     <div class="drop-zone" id="sort-drop-zone">
       <div class="drop-zone-title">📄ここにPDFをドロップ</div>
-      <span class="drop-zone-sub">またはボタンからファイルを選択</span><button class="select-btn" type="button" onclick="document.getElementById('sort-file-input').click()">📂 ファイルを選択</button>
+      <span class="drop-zone-sub">またはボタンからファイルを選択</span>
+      <button class="select-btn" type="button" onclick="document.getElementById('sort-file-input').click()">📂 ファイルを選択</button>
       <input type="file" id="sort-file-input" accept=".pdf" style="display:none;">
     </div>
     <div id="sort-pages-section" style="display:none;">
       <p class="section-title">📋 ページ一覧</p>
-      <div class="sel-bar" id="sort-sel-bar">
+      <div class="sel-bar">
         <span class="sel-bar-label">選択：</span>
         <button class="sel-bar-btn" type="button" onclick="sortSelectAll()">全選択</button>
         <button class="sel-bar-btn" type="button" onclick="sortDeselectAll()">全解除</button>
         <span class="sel-count" id="sort-sel-count">0ページ選択中</span>
       </div>
-      <p class="hint-text">💡 カードをクリックで選択 → 選択中のページは回転ボタンでまとめて回転します。ドラッグで並び替えも可能です。</p>
+      <p class="hint-text">💡 カードをクリックで選択（複数OK）→ 回転ボタンで選択中ページをまとめて回転。☰ハンドルをドラッグで並び替え。</p>
       <div class="pages-grid" id="sort-pages-grid"></div>
       <div class="btn-area">
         <button class="download-btn" id="sort-download-btn" type="button" onclick="generateSortPDF()">📥 PDFを出力する</button>
@@ -364,6 +236,7 @@ var sortRotations = {};
 var sortRawBuffer = null;
 var sortOriginalFileName = '';
 var sortDragSrc = null;
+var sortDragging = false; // ドラッグ中フラグ
 
 document.getElementById('sort-drop-zone').addEventListener('dragover', function(e) {
   e.preventDefault(); this.classList.add('dragover');
@@ -372,8 +245,7 @@ document.getElementById('sort-drop-zone').addEventListener('dragleave', function
   this.classList.remove('dragover');
 });
 document.getElementById('sort-drop-zone').addEventListener('drop', function(e) {
-  e.preventDefault(); this.classList.remove('dragover');
-  var file = e.dataTransfer.files[0];
+  e.preventDefault(); this.classList.remove('dragover');var file = e.dataTransfer.files[0];
   if (file) loadSortPDF(file);
 });
 document.getElementById('sort-file-input').addEventListener('change', function() {
@@ -410,7 +282,10 @@ function loadSortPDF(file) {
         document.getElementById('loading').style.display = 'none';
       });
   };
-  reader.onerror = function(e) { showError('sort-error-msg', e); document.getElementById('loading').style.display = 'none'; };
+  reader.onerror = function(e) {
+    showError('sort-error-msg', e);
+    document.getElementById('loading').style.display = 'none';
+  };
   reader.readAsArrayBuffer(file);
 }
 
@@ -429,9 +304,17 @@ function renderSortAllPages() {
 function createSortCard(orderIdx, originalIdx) {
   var card = document.createElement('div');
   card.className = 'page-card';
-  card.draggable = true;
   card.dataset.originalIdx = String(originalIdx);
+  // draggable はハンドル操作時だけ true にする
+  card.draggable = false;
 
+  //ドラッグハンドル
+  var handle = document.createElement('div');
+  handle.className = 'drag-handle';
+  handle.textContent = '☰';
+  handle.title = 'ドラッグで並び替え';
+
+  // チェックバッジ
   var check = document.createElement('div');
   check.className = 'page-check';
   check.textContent = '✓';
@@ -455,14 +338,23 @@ function createSortCard(orderIdx, originalIdx) {
   btnR.textContent = '↻'; btnR.title = '右に90°回転';
 
   (function(c, idx) {
-    // カードクリックで選択トグル（ドラッグ中・ボタンクリック時は除外）
+    //ハンドルのみdraggable制御
+    handle.addEventListener('mousedown', function() {
+      c.draggable = true;
+    });
+    handle.addEventListener('mouseup', function() {
+      c.draggable = false;
+    });
+
+    // カード本体クリック → 選択トグル（ドラッグ中・ボタン・ハンドルは除外）
     c.addEventListener('click', function(e) {
+      if (sortDragging) return;
       if (e.target.closest('.rotate-btn')) return;
+      if (e.target.closest('.drag-handle')) return;
       c.classList.toggle('selected');
       updateSortSelCount();
     });
 
-    // 回転ボタン：選択中なら選択済み全部、そうでなければこの1枚だけ
     btnL.addEventListener('click', function(e) {
       e.stopPropagation();
       sortRotateCards(c, idx, -90);
@@ -470,10 +362,12 @@ function createSortCard(orderIdx, originalIdx) {
     btnR.addEventListener('click', function(e) {
       e.stopPropagation();
       sortRotateCards(c, idx, 90);
-    });})(card, originalIdx);
+    });
+  })(card, originalIdx);
 
   btnArea.appendChild(btnL);
   btnArea.appendChild(btnR);
+  card.appendChild(handle);
   card.appendChild(check);
   card.appendChild(wrap);
   card.appendChild(label);
@@ -486,14 +380,11 @@ function createSortCard(orderIdx, originalIdx) {
 function sortRotateCards(clickedCard, clickedIdx, deg) {
   var grid = document.getElementById('sort-pages-grid');
   var selected = Array.from(grid.querySelectorAll('.page-card.selected'));
-
   if (selected.length === 0) {
-    // 選択なし → このカードだけ
     sortRotations[clickedIdx] = ((sortRotations[clickedIdx] || 0) + deg + 360) % 360;
     renderSortCanvas(clickedCard, clickedIdx);
     return;
   }
-  // 選択あり → 選択済み全部
   selected.forEach(function(card) {
     var idx = parseInt(card.dataset.originalIdx, 10);
     sortRotations[idx] = ((sortRotations[idx] || 0) + deg + 360) % 360;
@@ -505,7 +396,6 @@ function updateSortSelCount() {
   var count = document.querySelectorAll('#sort-pages-grid .page-card.selected').length;
   document.getElementById('sort-sel-count').textContent = count +'ページ選択中';
 }
-
 function sortSelectAll() {
   Array.from(document.querySelectorAll('#sort-pages-grid .page-card'))
     .forEach(function(c) { c.classList.add('selected'); });
@@ -532,13 +422,18 @@ function renderSortCanvas(card, originalIdx) {
 }
 
 function setupSortCardDrag(card) {
-  card.addEventListener('dragstart', function() {
+  card.addEventListener('dragstart', function(e) {
     sortDragSrc = card;
+    sortDragging = true;
     setTimeout(function() { card.classList.add('dragging'); }, 0);
   });
   card.addEventListener('dragend', function() {
     card.classList.remove('dragging');
-    sortDragSrc = null;rebuildSortPageOrder();
+    card.draggable = false;
+    sortDragSrc = null;
+    // クリックと区別するため少し遅らせてフラグ解除
+    setTimeout(function() { sortDragging = false; }, 50);
+    rebuildSortPageOrder();
     updateSortLabels();
   });
   card.addEventListener('dragover', function(e) {
@@ -607,6 +502,7 @@ var mergeFiles = [];
 var mergeFileIdSeq = 0;
 var mergeFileDragSrc = null;
 var mergePageDragSrc = null;
+var mergeDragging = false;
 
 document.getElementById('merge-drop-zone').addEventListener('dragover', function(e) {
   e.preventDefault(); this.classList.add('dragover');
@@ -667,9 +563,10 @@ function loadMergeFiles(files) {
 
 function appendMergeSection(fd) {
   var list = document.getElementById('merge-files-list');
-  var section = buildMergeSection(fd);
+  var result = buildMergeSection(fd);
+  var section = result.section;
+  var grid = result.grid;
   list.appendChild(section);
-  var grid = section.querySelector('.pages-grid');
   var promises = [];
   fd.pageOrder.forEach(function(originalIdx, i) {
     var card = createMergeCard(fd, i, originalIdx, grid);
@@ -684,7 +581,6 @@ function buildMergeSection(fd) {
   section.className = 'merge-file-section';
   section.dataset.fileId = String(fd.id);
 
-  //ヘッダー
   var header = document.createElement('div');
   header.className = 'merge-file-header';
   header.draggable = true;
@@ -728,12 +624,11 @@ function buildMergeSection(fd) {
 
   var hint = document.createElement('p');
   hint.className = 'hint-text';
-  hint.textContent = '💡 カードをクリックで選択 → 選択中のページは回転ボタンでまとめて回転します。ドラッグで並び替えも可能です。';
+  hint.textContent = '💡 カードをクリックで選択（複数OK）→ 回転ボタンで選択中ページをまとめて回転。☰ハンドルをドラッグで並び替え。';
 
   var grid = document.createElement('div');
   grid.className = 'pages-grid'; grid.style.marginTop = '4px';
 
-  // イベント
   (function(fileData, g, cs) {
     btnAll.onclick = function() {
       Array.from(g.querySelectorAll('.page-card')).forEach(function(c) { c.classList.add('selected'); });
@@ -755,7 +650,7 @@ function buildMergeSection(fd) {
   section.appendChild(hint);
   section.appendChild(grid);
   setupMergeFileDrag(header, section);
-  return section;
+  return { section: section, grid: grid };
 }
 
 function updateMergeSelCount(grid, countSpan) {
@@ -766,9 +661,15 @@ function updateMergeSelCount(grid, countSpan) {
 function createMergeCard(fd, orderIdx, originalIdx, grid) {
   var card = document.createElement('div');
   card.className = 'page-card';
-  card.draggable = true;
+  card.draggable = false;
   card.dataset.fileId = String(fd.id);
   card.dataset.originalIdx = String(originalIdx);
+
+  //ドラッグハンドル
+  var handle = document.createElement('div');
+  handle.className = 'drag-handle';
+  handle.textContent = '☰';
+  handle.title = 'ドラッグで並び替え';
 
   var check = document.createElement('div');
   check.className = 'page-check'; check.textContent = '✓';
@@ -791,13 +692,20 @@ function createMergeCard(fd, orderIdx, originalIdx, grid) {
   btnR.textContent = '↻'; btnR.title = '右に90°回転';
 
   (function(fileData, c, idx, g) {
+    // ハンドルのみdraggable制御
+    handle.addEventListener('mousedown', function() { c.draggable = true; });
+    handle.addEventListener('mouseup', function() { c.draggable = false; });
+
     c.addEventListener('click', function(e) {
+      if (mergeDragging) return;
       if (e.target.closest('.rotate-btn')) return;
+      if (e.target.closest('.drag-handle')) return;
       c.classList.toggle('selected');
       var sec = c.closest('.merge-file-section');
       var cs = sec ? sec.querySelector('.sel-count') : null;
-      updateMergeSelCount(g, cs);
+      if (cs) updateMergeSelCount(g, cs);
     });
+
     btnL.addEventListener('click', function(e) {
       e.stopPropagation();
       mergeRotateCards(fileData, c, idx, g, -90);
@@ -809,16 +717,15 @@ function createMergeCard(fd, orderIdx, originalIdx, grid) {
   })(fd, card, originalIdx, grid);
 
   btnArea.appendChild(btnL); btnArea.appendChild(btnR);
+  card.appendChild(handle);
   card.appendChild(check); card.appendChild(wrap);
   card.appendChild(label); card.appendChild(btnArea);
   setupMergeCardDrag(card, fd);
   return card;
 }
 
-// 選択中ページをまとめて回転。選択なしならそのカードだけ回転
 function mergeRotateCards(fd, clickedCard, clickedIdx, grid, deg) {
   var selected = Array.from(grid.querySelectorAll('.page-card.selected'));
-
   if (selected.length === 0) {
     var prev = fd.rotations[clickedIdx] || 0;
     fd.rotations[clickedIdx] = (prev + deg + 360) % 360;
@@ -864,11 +771,14 @@ function renderMergeCanvas(card, fd, originalIdx) {
 function setupMergeCardDrag(card, fd) {
   card.addEventListener('dragstart', function() {
     mergePageDragSrc = card;
+    mergeDragging = true;
     setTimeout(function() { card.classList.add('dragging'); }, 0);
   });
   card.addEventListener('dragend', function() {
     card.classList.remove('dragging');
+    card.draggable = false;
     mergePageDragSrc = null;
+    setTimeout(function() { mergeDragging = false; }, 50);
     rebuildMergePageOrder(fd);
     updateMergePageLabels(card.closest('.pages-grid'));
   });
@@ -898,6 +808,7 @@ function rebuildMergePageOrder(fd) {
     .map(function(c) { return parseInt(c.dataset.originalIdx, 10); });
 }
 function updateMergePageLabels(grid) {
+  if (!grid) return;
   Array.from(grid.querySelectorAll('.page-card')).forEach(function(c, i) {
     c.querySelector('.page-label').textContent = 'p.' + (i + 1);
   });
@@ -914,8 +825,7 @@ function setupMergeFileDrag(header, section) {
     mergeFileDragSrc = null;
     rebuildMergeFilesOrder();});
   header.addEventListener('dragover', function(e) {
-    e.preventDefault(); e.stopPropagation();
-    if (mergeFileDragSrc && mergeFileDragSrc !== section) header.classList.add('drag-over');
+    e.preventDefault(); e.stopPropagation();if (mergeFileDragSrc && mergeFileDragSrc !== section) header.classList.add('drag-over');
   });
   header.addEventListener('dragleave', function() { header.classList.remove('drag-over'); });
   header.addEventListener('drop', function(e) {
